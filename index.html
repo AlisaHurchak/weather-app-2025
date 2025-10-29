@@ -9,19 +9,30 @@
   <body>
     <div class="container">
       <header>
-        <form>
-          <input type="text" required placeholder="Enter a city.." />
-          <input type="submit" value="Search" />
+        <form class="search-from">
+          <input
+            type="text"
+            required
+            placeholder="Enter a city.."
+            class="enter-city-input"
+          />
+          <input type="submit" value="Search" class="form-search-button" />
         </form>
       </header>
       <main>
-        <div>
-          <h1>Paris</h1>
-          <p>
-            Monday 20:56, few clouds <br />
-            81%, Wind: 3.6km/h
-          </p>
-          <div><span>🌑</span><span>12</span> <span>°C </span></div>
+        <div class="weather-app-data">
+          <div>
+            <h1 class="weather-app-city">Paris</h1>
+            <p class="weather-app-conditions">
+              Monday 20:56, few clouds <br />
+              Humidity: <strong> 81%</strong>, Wind: <strong>3.6km/h</strong>
+            </p>
+          </div>
+          <div class="temperature-now">
+            <div class="weather-icon">🌑</div>
+            <div class="temperature-number">12</div>
+            <div class="temperature-sign">°C</div>
+          </div>
         </div>
       </main>
       <footer>
