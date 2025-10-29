@@ -16,11 +16,14 @@ function updateTemperature(response) {
   let timeElement = document.querySelector("#time-now");
   let time = new Date(response.data.time * 1000);
 
+  let icon = document.querySelector("#weather-icon");
+
   city.innerHTML = response.data.city;
   timeElement.innerHTML = formatDate(time);
   descriptionElement.innerHTML = description;
   humidityElement.innerHTML = humidity;
   windElement.innerHTML = wind;
+  icon.innerHTML = `<img src="${response.data.condition.icon_url}"/>`;
   temperature.innerHTML = temperatureNow;
 }
 

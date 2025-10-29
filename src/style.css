@@ -54,13 +54,16 @@ strong {
 }
 
 .weather-icon {
-  font-size: 32px;
-  margin-top: 20px;
-  margin-right: 8px;
+  width: 48px;
+  height: 48px;
+  line-height: 80px;
+  margin-right: 48px;
+  margin-top: -4px;
 }
 .temperature-number {
   font-size: 56px;
   font-weight: 600;
+  line-height: 80px;
 }
 .temperature-sign {
   font-size: 24px;
