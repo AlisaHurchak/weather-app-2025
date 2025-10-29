@@ -1,11 +1,53 @@
 function updateTemperature(response) {
   let temperature = document.querySelector("#temperature-number");
   let temperatureNow = Math.round(response.data.temperature.current);
-  temperature.innerHTML = temperatureNow;
+
   let city = document.querySelector("#weather-app-city");
+
+  let descriptionElement = document.querySelector("#sky-condition");
+  let description = response.data.condition.description;
+
+  let humidityElement = document.querySelector("#humidity");
+  let humidity = `${response.data.temperature.humidity}%`;
+
+  let windElement = document.querySelector("#wind");
+  let wind = `${response.data.wind.speed} km/h`;
+
+  let timeElement = document.querySelector("#time-now");
+  let time = new Date(response.data.time * 1000);
+
   city.innerHTML = response.data.city;
+  timeElement.innerHTML = formatDate(time);
+  descriptionElement.innerHTML = description;
+  humidityElement.innerHTML = humidity;
+  windElement.innerHTML = wind;
+  temperature.innerHTML = temperatureNow;
 }
 
+function formatDate(time) {
+  let hours = time.getHours();
+  let minutes = time.getMinutes();
+  let day = time.getDay();
+
+  let days = [
+    "Sunday",
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thursday",
+    "Friday",
+    "Saturday",
+  ];
+  let formattedDay = days[day];
+
+  if (hours < 10) {
+    let hours = `0${hours}`;
+  }
+  if (minutes < 10) {
+    let minutes = `0${minutes}`;
+  }
+  return `${formattedDay}, ${hours}:${minutes}`;
+}
 function searchCity(city) {
   let apiKey = `cbc74oa354dba2dbcf0te4ef1b7eef0f`;
   let apiUrl = `https://api.shecodes.io/weather/v1/current?query=${city}&key=${apiKey}&units=metric`;
@@ -21,30 +63,4 @@ function search(event) {
 let newCity = document.querySelector("#search-from");
 newCity.addEventListener("submit", search);
 
-function formattedDate(date) {
-  let hour = date.getHours();
-  let minutes = date.getMinutes();
-  let day = date.getDay();
-  let days = [
-    "Sunday",
-    "Monday",
-    "Tuesday",
-    "Wednesday",
-    "Thursday",
-    "Friday",
-    "Saturday",
-  ];
-  if (hour < 10) {
-    let hour = `0${hour}`;
-  }
-  if (minutes < 10) {
-    let minutes = `0${minutes}`;
-  }
-  let formattedDay = days[day];
-  return `${formattedDay} ${hour}:${minutes}`;
-}
-
-let newTime = document.querySelector("#time-now");
-let now = new Date();
-
-newTime.innerHTML = formattedDate(now);
+searchCity("Kyiv");
